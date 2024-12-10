@@ -1,0 +1,19 @@
+meta {
+  name: newTransfer
+  type: http
+  seq: 4
+}
+
+post {
+  url: localhost:3000/api/transfers/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "accountOrigin": 1733796849778,
+    "accountDestiny": 1733796124249,
+    "amount": 100000
+  }
+}

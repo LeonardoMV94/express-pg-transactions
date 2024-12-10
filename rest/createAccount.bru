@@ -1,0 +1,17 @@
+meta {
+  name: createAccount
+  type: http
+  seq: 3
+}
+
+post {
+  url: localhost:3000/api/accounts/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "username": "enano"
+  }
+}
