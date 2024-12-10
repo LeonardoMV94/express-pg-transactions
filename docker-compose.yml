@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: pg-database
+    ports:
+      - 5432:5432
+    volumes:
+      - ./database-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=javascript
+      - POSTGRES_USER=fullstack
+      - POSTGRES_DB=bootcamp
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: caremondae
