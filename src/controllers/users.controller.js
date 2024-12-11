@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
       res.json({ message: `Usuario ${username} creado` });
     }  
   } catch (error) {
-    res.json({ message: error.detail });
+    res.json({ message: error.detail || error.message });
   }
 });
 
