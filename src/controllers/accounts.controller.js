@@ -1,9 +1,9 @@
-const express = require("express");
-const ServiceAccount = require("../services/accounts.service");
+const express = require('express')
+const ServiceAccount = require('../services/accounts.service')
 const validateSchema = require('../middlewares/validations/validationHandler')
-const {createAccountSchema} = require('../schemas/account.schema')
+const { createAccountSchema } = require('../schemas/account.schema')
 
-const router = express.Router();
+const router = express.Router()
 
 /**
  * @swagger
@@ -48,19 +48,19 @@ const router = express.Router();
  *                   type: string
  *                   example: "Detalle del error."
  */
-router.post("/", createAccountSchema, validateSchema, async (req, res) => {
-  const { account_number, username } = req.body;
+router.post('/', createAccountSchema, validateSchema, async (req, res) => {
+  const { account_number, username } = req.body
   try {
     const result = await ServiceAccount.createAccount({
       account_number,
-      username,
-    });
+      username
+    })
     if (result) {
-      res.status(200).json({ message: "Cuenta creada exitosamente." });
+      res.status(200).json({ message: 'Cuenta creada exitosamente.' })
     }
   } catch (error) {
-    res.status(500).json({ message: error.detail || error.message });
+    res.status(500).json({ message: error.detail || error.message })
   }
-});
+})
 
-module.exports = router;
+module.exports = router

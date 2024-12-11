@@ -22,5 +22,14 @@
   },
   "devDependencies": {
     "standard": "^17.1.2"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json",
+    "rules": {
+      "no-undef": "error",
+      "no-unused-vars": "warn",
+      "no-path-concat": "off",
+      "camelcase":"off"
+    }
   }
 }

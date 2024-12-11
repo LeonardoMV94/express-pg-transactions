@@ -1,9 +1,9 @@
-const express = require("express");
-const UsersServices = require("../services/users.service");
+const express = require('express')
+const UsersServices = require('../services/users.service')
 const { createUserSchema } = require('../schemas/user.schema')
 const validateSchema = require('../middlewares/validations/validationHandler')
 
-const router = express.Router();
+const router = express.Router()
 
 /**
  * @swagger
@@ -68,16 +68,16 @@ const router = express.Router();
  *                   type: string
  *                   example: "Error al crear el usuario."
  */
-router.post("/", createUserSchema, validateSchema, async (req, res) => {
-  const { username, email, password } = req.body;
+router.post('/', createUserSchema, validateSchema, async (req, res) => {
+  const { username, email, password } = req.body
   try {
-    const result = await UsersServices.createUser({ username, email, password });  
-    if(result){
-      res.json({ message: `Usuario ${username} creado` });
-    }  
+    const result = await UsersServices.createUser({ username, email, password })
+    if (result) {
+      res.json({ message: `Usuario ${username} creado` })
+    }
   } catch (error) {
-    res.json({ message: error.detail || error.message });
+    res.json({ message: error.detail || error.message })
   }
-});
+})
 
-module.exports = router;
+module.exports = router

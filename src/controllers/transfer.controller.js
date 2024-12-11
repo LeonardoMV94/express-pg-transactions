@@ -1,8 +1,8 @@
-const express = require("express");
-const ServiceTransfer = require("../services/transfer.service");
+const express = require('express')
+const ServiceTransfer = require('../services/transfer.service')
 const validateSchema = require('../middlewares/validations/validationHandler')
 const { transferSchema } = require('../schemas/transfer.schema')
-const router = express.Router();
+const router = express.Router()
 
 /**
  * @swagger
@@ -51,22 +51,22 @@ const router = express.Router();
  *                   type: string
  *                   example: "Detalle del error."
  */
-router.post("/", transferSchema, validateSchema,async (req, res) => {
-  const { accountOrigin, accountDestiny, amount } = req.body;
+router.post('/', transferSchema, validateSchema, async (req, res) => {
+  const { accountOrigin, accountDestiny, amount } = req.body
 
   try {
     const result = await ServiceTransfer.updateBalance({
       accountOrigin,
       accountDestiny,
-      amount,
-    });
+      amount
+    })
     if (result) {
-      res.status(200).json({ message: "Transferencia exitosa." });
+      res.status(200).json({ message: 'Transferencia exitosa.' })
     }
   } catch (error) {
-    res.status(500).json({ message: error.detail || error.message });
+    res.status(500).json({ message: error.detail || error.message })
   }
-});
+})
 
 /**
  * @swagger
@@ -105,17 +105,17 @@ router.post("/", transferSchema, validateSchema,async (req, res) => {
  *                   type: string
  *                   example: "Detalle del error."
  */
-router.get('/check-balance/:account_number', async(req, res) => {
-  const account_number = req.params.account_number;
+router.get('/check-balance/:account_number', async (req, res) => {
+  const account_number = req.params.account_number
 
   try {
-    const result = await ServiceTransfer.checkAmmoutBalance({account_number});
-    if (result){
-      res.status(200).json({ balance: result });
+    const result = await ServiceTransfer.checkAmmoutBalance({ account_number })
+    if (result) {
+      res.status(200).json({ balance: result })
     }
   } catch (error) {
-    res.status(500).json({ message: error.detail || error.message });
+    res.status(500).json({ message: error.detail || error.message })
   }
 })
 
-module.exports = router;
+module.exports = router

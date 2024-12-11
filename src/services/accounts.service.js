@@ -12,7 +12,7 @@ class ServiceAccount {
 
       // Descontar dinero de la cuenta origen
       const createQuery = 'INSERT INTO accounts(account_number, user_id) VALUES ($1, $2);'
-      const newAccount_number = account_number == undefined ? new Date().getTime() : account_number
+      const newAccount_number = account_number === undefined ? new Date().getTime() : account_number
 
       const debitResult = await pool.query(createQuery, [newAccount_number, user_id.rows[0].id])
       if (debitResult.rowCount === 0) throw new Error('Error al crear cuenta.')
