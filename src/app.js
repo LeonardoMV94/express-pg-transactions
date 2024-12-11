@@ -11,4 +11,5 @@ routes(app)
 
 app.listen(port, () => {
   console.log(`Server in http://localhost:${port}`)
+  console.log(`Documentation in http://localhost:${port}/docs`);
 })
