@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "checkJs": true, // Habilita la verificación de tipos en archivos .js
+        "target": "ES2024", // Define la versión de ECMAScript que usas
+        "module": "commonjs", // Usamos CommonJS, que es común en proyectos Node.js
+        "strict": null // Activa la verificación estricta para asegurar una buena calidad del código
+    },
+    "include": [
+        "**/*.js" // Incluir todos los archivos .js en el proyecto
+    ]
+}

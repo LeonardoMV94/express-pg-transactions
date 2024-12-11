@@ -11,6 +11,10 @@ pool.on('error', (error, client) => {
   console.log(`[PG] Error query : ${error}`)
 })
 
-
+pool.connect( (err , connection) => {
+  if (err) throw err;
+  console.log('Database is connected successfully !');
+  connection.release();
+}); 
 
 module.exports = pool;

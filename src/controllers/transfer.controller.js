@@ -12,10 +12,11 @@ router.post("/", async (req, res) => {
       accountDestiny,
       amount,
     });
-    if (!result) throw new Error(`Error en la transferencia`);
-    res.status(200).json({ message: "Transferencia exitosa." });
+    if (result) {
+      res.status(200).json({ message: "Transferencia exitosa." });
+    }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.detail || error.message });
   }
 });
 
@@ -24,10 +25,11 @@ router.get('/check-balance/:account_number', async(req, res) => {
 
   try {
     const result = await ServiceTransfer.checkAmmoutBalance({account_number});
-    if (!result) throw new Error(`Error al obtener datos`);
-    res.status(200).json({ balance: result });
+    if (result){
+      res.status(200).json({ balance: result });
+    }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.detail || error.message });
   }
 })
 

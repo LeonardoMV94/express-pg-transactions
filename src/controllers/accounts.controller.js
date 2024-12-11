@@ -10,10 +10,11 @@ router.post("/", async (req, res) => {
       account_number,
       username,
     });
-    if (!result) throw new Error(`Error al crear cuenta`);
-    res.status(200).json({ message: "Cuenta creada exitosamente." });
+    if (result) {
+      res.status(200).json({ message: "Cuenta creada exitosamente." });
+    }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.detail || error.message });
   }
 });
 

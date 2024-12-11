@@ -19,8 +19,9 @@ class UsersServices {
           } catch (error) {
             // Revertir si algo falla
             await pool.query("ROLLBACK");
-            console.log(`[PG] ERROR WITH ROLLBACK: ${error}`)
-            return false;
+            console.log(`[PG] ERROR with rollback ${error}`)
+            // para elevar el error
+            throw error
           }
     }
 

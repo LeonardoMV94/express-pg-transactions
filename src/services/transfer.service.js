@@ -1,5 +1,4 @@
 const pool = require("../lib/db");
-const { handleDatabaseError } = require('../lib/errors.db')
 class TransferService {
 
     async checkAmmoutBalance({account_number}){
@@ -14,11 +13,9 @@ class TransferService {
             return debitResult.rows[0].balance;
           } catch (error) {
             // 5. Revertir si algo falla
-            await pool.query("ROLLBACK");
-            console.log(JSON.stringify({...handleDatabaseError(error), donde: "checkAmmoutBalance"}))
-            
-            //console.log(`[PG] ERROR WITH ROLLBACK: ${JSON.stringify(error)}`)
-            return null;
+            await pool.query("ROLLBACK");          
+            console.log(`[PG] ERROR WITH ROLLBACK: ${JSON.stringify(error)}`)
+            throw error
           }
         
 
@@ -49,10 +46,8 @@ class TransferService {
         } catch (error) {
           // 5. Revertir si algo falla
           await pool.query("ROLLBACK");
-          console.log(JSON.stringify(handleDatabaseError(error)))         
-          
           console.log(`[PG] ERROR WITH ROLLBACK: ${JSON.stringify(error)}`)
-          return false;
+          throw error
         }
       }
 }
